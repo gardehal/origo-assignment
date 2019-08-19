@@ -31,14 +31,16 @@ public class Main
         if(stationStatus.size() < 1 || stationInformation.size() < 1)
         {
             System.out.println("Partial or no data available. Exiting program.");
-            return 1;
+            System.exit(0);
         }
 
         ArrayList<StationData> printData = mergeArrays(stationStatus, stationInformation);
 
+        String printFormat = "%-4.4s %-24.24s %-24.24s %-16.16s %-16.16s %-12.12s %-12.12s %-16.16s %-16.16s %-16.16s %-16.16s %-16.16s";
         System.out.println("Total number of stations: " + printData.size() + ", data generated POSIX: " + printData.get(0).getLast_reported());
-
-        System.out.println("\tID |\tName |\tAdress |\tLat |\tLon |\tCapacity |\tIs Installed |\tIs Renting |\tIs Returning |\tLast Reported |\tBikes Available |\tDocs Available");
+        System.out.println(String.format(printFormat,
+                "ID", "Name", "Address", "Lat", "Lon", "Capacity",
+                "Is Installed", "Is Rending", "Is Returning", "Last Reported", "Bikes Available", "Docks Available"));
 
         for (StationData sd : printData)
         {
@@ -46,27 +48,23 @@ public class Main
 //            System.out.println(sd);
 
             // Something more readable
-            formatPrint(sd);
+            formatPrint(sd, printFormat);
         }
 
         return 0;
     }
 
-    public static int formatPrint(StationData sd)
+    // Helper method for printing station overview
+    public static int formatPrint(StationData sd, String format)
     {
-//        System.out.println("\tID |\tName |\tAdress |\tLat |\tLon |\tCapacity |\tIs Installed |\tIs Renting |\tIs Returning |\tLast Reported |\tBikes Available |\tDocs Available");
-        System.out.println("\t" + sd.getStation_id()
-                + " |\t" + sd.getName()
-                + " |\t" + sd.getAddress()
-                + " |\t" + sd.getLat()
-                + " |\t" + sd.getLon()
-                + " |\t" + sd.getCapacity()
-                + " |\t" + sd.getIs_installed()
-                + " |\t" + sd.getIs_renting()
-                + " |\t" + sd.getIs_returning()
-                + " |\t" + sd.getLast_reported()
-                + " |\t" + sd.getNum_bikes_available()
-                + " |\t" + sd.getNum_docks_available());
+        String installed = sd.getIs_installed() == 1 ? "Yes" : "No";
+        String renting = sd.getIs_renting() == 1 ? "Yes" : "No";
+        String returning = sd.getIs_returning() == 1 ? "Yes" : "No";
+
+        System.out.println(String.format(format,
+                sd.getStation_id(), sd.getName(), sd.getAddress(), sd.getLat(), sd.getLon(), sd.getCapacity(),
+                installed, renting, returning, sd.getLast_reported(),
+                sd.getNum_bikes_available(), sd.getNum_docks_available()));
 
         return 0;
     }
@@ -92,17 +90,17 @@ public class Main
     public static ArrayList<StationData> mergeArrays(ArrayList<StationData> stationStatus, ArrayList<StationData> stationInformation)
     {
         ArrayList<StationData> result = new ArrayList<StationData>();
-        int iteratorOffset = 0;
 
+        // Sort on ID
         stationStatus = bubbleSort(stationStatus);
         stationInformation = bubbleSort(stationInformation);
 
-        // Nested loop in case there are stations on one of the arrays and not the other. The offset is there to limit the loops needed in case a station is missing in one array
+        // Nested loop in case there are stations on one of the arrays and not the other
         for(int i = 0; i < stationStatus.size(); i++)
         {
             forJ: for(int j = i; j < stationStatus.size(); j++)
             {
-                if(stationStatus.get(i).getStation_id().equals(stationInformation.get(j + iteratorOffset).getStation_id()))
+                if(stationStatus.get(i).getStation_id().equals(stationInformation.get(j).getStation_id()))
                 {
                     StationData currentStatus = stationStatus.get(i);
                     StationData currentInfo = stationInformation.get(j);
@@ -125,8 +123,7 @@ public class Main
                             num_bikes_available, num_docks_available);
 
                     result.add(sd);
-//
-//                    iteratorOffset += j;
+
                     break forJ;
                 }
             }
@@ -141,7 +138,7 @@ public class Main
 
     public static ArrayList parse(String url)
     {
-        URL validatedURL;
+        URL validatedURL = null;
         BufferedReader br;
         String data = "";
 
@@ -154,7 +151,7 @@ public class Main
         {
             System.out.println("There was a problem validating the URL. Exiting program.");
             System.out.println(urlException);
-            return null;
+            System.exit(0);
         }
 
         // Read from URL
@@ -176,7 +173,7 @@ public class Main
         {
             System.out.println("There was a problem connecting to the URL. Exiting program.");
             System.out.println(ioException);
-            return null;
+            System.exit(0);
         }
 
         // Parse string into JSON and navigate to data/stations
