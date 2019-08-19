@@ -3,8 +3,8 @@ public class StationData
     private String station_id;
     private String name;
     private String address;
-    private long lat;
-    private long lon;
+    private double lat;
+    private double lon;
     private int capacity;
     private int is_installed;
     private int is_renting;
@@ -16,7 +16,7 @@ public class StationData
     public StationData()
     {}
 
-    public StationData(String station_id, String name, String address, long lat, long lon, int capacity,
+    public StationData(String station_id, String name, String address, double lat, double lon, int capacity,
                        int is_installed, int is_renting, int is_returning, int last_reported,
                        int num_bikes_available, int num_docks_available)
     {
@@ -72,22 +72,22 @@ public class StationData
         this.address = address;
     }
 
-    public long getLat()
+    public double getLat()
     {
         return lat;
     }
 
-    public void setLat(long lat)
+    public void setLat(double lat)
     {
         this.lat = lat;
     }
 
-    public long getLon()
+    public double getLon()
     {
         return lon;
     }
 
-    public void setLon(long lon)
+    public void setLon(double lon)
     {
         this.lon = lon;
     }
