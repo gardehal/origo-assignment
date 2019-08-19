@@ -1,0 +1,28 @@
+Hei!
+
+Som nevnt i utlysningen, så vurderer vi fortløpende innkomne søknader for utviklerstillingene i Oslo Origo. Du er en av de aktuelle kandidatene! Det er mange kvalifiserte søkere, og vi ønsker å kjøre en liten kodeoppgave før vi velger hvem vi tar videre til en første samtale.
+
+OPPGAVEN:
+Formålet her er bare å vise at du kan enkel koding gjennom konsumering av et åpent API. Forventet tidsbruk er 1-2 timer.
+
+Oslo Bysykkel har et åpent API som viser plasseringer og tilstand for sine sykkelstativer
+
+https://oslobysykkel.no/apne-data/sanntid
+
+Din oppgave er å skrive en liten applikasjon som viser en liste over de ulike stasjonene, og hvor mange tilgjengelige låser og ledige sykler som er på dem i øyeblikket.
+
+- Du velger selv hvilke(t) språk du vil bruke
+- Bruk bibliotek du foretrekker, om du ønsker det
+- Hvordan du viser listen er helt opp til deg, men den må inneholde navnet på stativet, antall tilgjengelige låser og ledige sykler i øyeblikket
+- Du trenger ikke skrive tester eller gjøre masse funksjonelt fancy pantsy utover å løse oppgaven ...
+- ... men skriv pen og ryddig kode, med normal feilhåndtering
+
+LEVERANSE:
+- Sjekk inn koden på din egen GitHub-konto
+- Svar på denne mailen med link til innsjekket prosjekt på GitHub
+- Instruksjoner for å kjøre koden din må ligge som en Readme på prosjektsiden, ikke som tekst i mailen
+- LEVERINGSFRIST: Lørdag 24. august klokken 15. Si fra om du trenger mer tid.
+
+Lykke til!
+
+PS: Det er mange søkere. For å behandle alle likt så har vi ikke anledning til å besvare spørsmål om oppgaven. Men vi kommer fortløpende til å bekrefte at de er mottatt! (Kan sikkert ta noen timer, avhengig av tid på døgnet...)
