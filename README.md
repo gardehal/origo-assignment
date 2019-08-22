@@ -8,7 +8,7 @@ A simple program to print information about [Oslos Bysykkler](https://oslobysykk
 
 ## My Thoughts
 
-Since it's been a while since I've used Java it went a little slower than expected but it turned out pretty good, even picked up some neat Regex tricks on the way.
+Since it's been a while since I've used Java it went a little slower than expected but it turned out pretty good, even picked up some neat formatting tricks on the way.
 I'm guessing part of the challenge was combining the two APIs but the assignment doesn't strictly say that you need names, addresses etc. but I figured it's part of making the program actually usable and went ahead anyway.
 I tried to make some methods reusable, but in the end that might have complicated things more than necessary, especially for this assignment.
 
